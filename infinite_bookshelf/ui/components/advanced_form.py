@@ -1,6 +1,6 @@
 import streamlit as st
 
-MODEL_LIST = ["llama3-70b-8192", "llama3-8b-8192", "gemma2-9b-it"]
+MODEL_LIST = ["meta-llama/llama-4-maverick-17b-128e-instruct", "meta-llama/llama-4-scout-17b-16e-instruct", "moonshotai/kimi-k2-instruct", "deepseek-r1-distill-llama-70b"]
 
 
 def render_advanced_groq_form(on_submit, button_disabled=False, button_text="Generate"):
