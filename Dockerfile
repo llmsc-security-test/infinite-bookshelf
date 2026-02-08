@@ -11,11 +11,20 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /app
 
+# Install Python dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Copy application code
 COPY . .
 
-EXPOSE 8000
+# Expose the port that Streamlit will use
+EXPOSE 8501
 
-CMD ["streamlit", "run", "main.py", "--server.port=8000"]
+# Add and prepare custom entrypoint
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh && \
+    mkdir -p /var/log && touch /var/log/app.log
+
+# Keep the custom entrypoint as the container's command
+ENTRYPOINT ["/entrypoint.sh"]
